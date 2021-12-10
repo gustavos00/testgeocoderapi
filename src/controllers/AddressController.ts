@@ -15,7 +15,12 @@ export const getAddress = async (req: Request, res: Response) => {
       `${streetName} ${postalCode} ${city}`
     );
 
-    res.status(200).send(response[0]);
+    if(response[0]) {
+      res.status(200).send(response[0]);
+    } else {
+      res.sendStatus(404)
+    }
+    
   } catch (e) {
     res.status(500).send({ message: "Something went wront" });
   }
